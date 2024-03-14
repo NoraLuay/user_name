@@ -77,12 +77,16 @@ public class DBConnection{
         return counter;
     }
 
-    public int deleteData(String Name){
-        SQLiteDatabase sqLiteDatabase = dbInfo.getWritableDatabase();
-
+    public int deleteData(String name){
+        //SQLiteDatabase sqLiteDatabase = dbInfo.getWritableDatabase();
+        //String selection = DB.username + " = ? OR " + DB.names + " = ?";
         // select the columns in database which is names, usernames and password
-        String [] whereArgs = {Name};
-        int counter = sqLiteDatabase.delete(DB.tableName,DB.username+" LIKE ? ",whereArgs);
+        //String [] whereArgs = {Name};
+       // int counter = sqLiteDatabase.delete(DB.tableName,DB.username+" LIKE ? ",whereArgs);
+        SQLiteDatabase sqLiteDatabase = dbInfo.getWritableDatabase();
+        String selection = DB.username + " = ? OR " + DB.names + " = ?";
+        String[] selectionArgs = {name, name};
+        int counter = sqLiteDatabase.delete(DB.tableName, selection, selectionArgs);
         return counter;
     }
     // inner class
